@@ -1,0 +1,37 @@
+spring:
+  security:
+    noMatcherPermit: false #url在redis中不存在 是否校验权限开关
+    permits: #登录但是不需要检验权限的url
+      - /test/**
+    statics: #静态资源过滤
+      - /swagger-ui.html
+      - /swagger/**
+      - /webjars/**
+      - /swagger-resources/**
+      - /v2/**
+  devtools:
+    restart:
+      enabled: true #热部署
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 8 #最大连接数
+        max-idle: 8 #最大空闲连接
+        min-idle: 0 #最小空闲连接
+  datasource:
+    url: jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: HikariCp
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
